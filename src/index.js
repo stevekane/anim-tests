@@ -9,7 +9,7 @@ let frame = 0
 
 function KFs (kfs) {
   this.position = kfs.position || [new KF('linear', 0, [0, 0])]
-  this.scale= kfs.scale || [new KF('linear', 0, [1, 1])]
+  this.scale = kfs.scale || [new KF('linear', 0, [1, 1])]
   this.rotation = kfs.rotation || [new KF('linear', 0, 0)]
   this.opacity = kfs.opacity || [new KF('linear', 0, 1)]
 }
@@ -80,7 +80,7 @@ class Renderer {
 }
 
 function update () {
-  frame = (frame + 1) % 900
+  frame = (frame + 1) % 424
 }
 
 function render () {
@@ -97,15 +97,24 @@ const header = new Asset('h1', 'hello world', {
   display: 'block'
 }, new KFs({
   position: [
-    new KF('bounceOut', 0, [10, 20]),
-    new KF('backOut', 100, [1020, 302]),
-    new KF('elasticOut', 300, [200, 509]),
-    new KF('expoOut', 900, [20, 110])
+    new KF('bounceOut', 0, [20, 20]),
+    new KF('sineInOut', 100, [20, 300]),
+    new KF('bounceOut', 400, [20, 20])
+  ],
+  scale: [
+    new KF('bounceOut', 0, [1.0, 1.0]),
+    new KF('linear', 100, [1.5, 1.5]),
+    new KF('linear', 400, [1.0, 1.0])
+  ],
+  opacity: [
+    new KF('bounceOut', 0, 0.1), 
+    new KF('linear', 100, 1.0), 
+    new KF('bounceOut', 400, 0.1), 
   ]
 }))
 const assets = [header]
-window.r = r
 
+window.r = r
 r.loadAssets(assets)
 setInterval(update, TICK_INTERVAL_MS)
 requestAnimationFrame(render)
