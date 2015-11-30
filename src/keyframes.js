@@ -24,6 +24,15 @@ export function Keyframe (type, frame, value) {
   this.value = value
 }
 
+export function KFs (kfs={}) {
+  this.position = kfs.position || [new Keyframe('linear', 0, [0, 0])]
+  this.scale = kfs.scale || [new Keyframe('linear', 0, [1, 1])]
+  this.rotation = kfs.rotation || [new Keyframe('linear', 0, 0)]
+  this.opacity = kfs.opacity || [new Keyframe('linear', 0, 1)]
+  this.skew = kfs.skew || [new Keyframe('linear', 0, [0, 0])]
+  this.active = kfs.active || [new Keyframe('step', 0, true)]
+}
+
 export function lerpKeyframes (kfs, f) {
   var i = kfs.length
 

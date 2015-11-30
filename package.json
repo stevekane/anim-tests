@@ -25,6 +25,7 @@
     "budo": "^6.0.4"
   },
   "dependencies": {
-    "eases": "^1.0.8"
+    "eases": "^1.0.8",
+    "node-uuid": "^1.4.7"
   }
 }
